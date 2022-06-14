@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="warbber">
+        <h1>Welccome to the Great Number Game!!!</h1>
+        <h2 class="margin">I'm thinking of a number between 1 and 100</h2>
+        {% if color %}
+            <div style="background-color: {{color}};" class="box">
+                <p class="clrbox">{{message}}</p>
+                {% if 'green' in color %}
+                <a href="/del"><button>play again</button></a>
+                
+                {%endif%}
+            </div>
+        {% endif %}
+        <h2 class="margin">take A guess!</h2>
+        <form action="/guess" method="post" >
+            {%csrf_token%}
+            <input name="guess" type="text" placeholder="what is your guess?">
+            <div><button class="margin">Submit</button></div>
+        </form>
+    </div>
+</body>
+
+</html>
